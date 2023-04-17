@@ -11,3 +11,11 @@ import WeatherMenu from "@/components/WeatherMenu/index.vue";
     </section>
   </main>
 </template>
+
+<style scoped lang="scss">
+.hero {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+}
+</style>

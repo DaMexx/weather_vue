@@ -10,7 +10,8 @@ const weatherStore = useWeatherStore();
 const { weatherRequestAction } = weatherStore;
 const request = storeToRefs(weatherStore);
 onMounted(() => {
-  weatherRequestAction(55.75396, 37.620393);
+  // weatherRequestAction(55.75396, 37.620393);
+  weatherRequestAction( 47.200605, 38.927657);
 });
 
 </script>

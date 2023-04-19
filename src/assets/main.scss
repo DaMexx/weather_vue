@@ -7,8 +7,18 @@
   font-weight: normal;
   height: 100vh;
 }
-main{
+main {
   height: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 /* a,
 .green {

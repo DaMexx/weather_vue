@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import Weekly from "./Weekly.vue";
+</script>
+
 <template>
-  <div class="main">WeatherMenu</div>
+  <div class="main">
+    <h1>WeatherMenu</h1>
+    <Weekly />
+  </div>
 </template>
 
 <style scoped lang="scss">

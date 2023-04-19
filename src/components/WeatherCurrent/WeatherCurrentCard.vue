@@ -59,7 +59,8 @@ const ruCondition = computed(() => {
 
 <style scoped lang="scss">
 .weather-card {
-  max-width: 100%;
+  width: 100%;
+  min-width: max-content;
   height: max-content;
   background-color: blueviolet;
   border-radius: 20px;

@@ -5,11 +5,12 @@ import IconWaterDrop from "@/components/icons/IconWaterDrop.vue";
 import IconWind from "@/components/icons/IconWind.vue";
 import IconCloud from "@/components/icons/IconCloud.vue";
 import IconPressure from "@/components/icons/IconPressure.vue";
+
+import {weatherTypesDictionary, windDirectionDictionary} from "@/helpers/dictionary"
+
+
 const locationInfo = final.data.geo_object;
 const todayInfo = final.data.fact;
-const ruCondition = computed(() => {
-  return todayInfo.condition === "cloudy" ? "Ветрено" : todayInfo.condition;
-});
 </script>
 
 <template>
@@ -19,16 +20,18 @@ const ruCondition = computed(() => {
     </h1>
     <div class="weather-card__temperature">
       <div class="temperature__main">
-        +<span class="temp">{{ todayInfo.temp }}</span>
+        <span v-if="todayInfo.temp > 0">+</span>
+        <span class="temp">{{ todayInfo.temp }}</span>
       </div>
       <IconCloud class="temperature__icon" />
 
       <div class="temperature__container">
         <div class="container__condition">
-          {{ ruCondition }}
+          {{ weatherTypesDictionary[todayInfo.condition] }}
         </div>
         <div class="container__feel">
-          Ощущается как +<span class="temp">{{ todayInfo.feels_like }}</span>
+          Ощущается как <span v-if="todayInfo.feels_like > 0">+</span
+          ><span class="temp">{{ todayInfo.feels_like }}</span>
         </div>
       </div>
     </div>
@@ -36,7 +39,7 @@ const ruCondition = computed(() => {
       <div class="additional__wind">
         <IconWind width="24px" height="24px" />
         <span>{{ todayInfo.wind_speed }} м/с</span>
-        <span>{{ todayInfo.wind_dir }}</span>
+        <span>{{ windDirectionDictionary[todayInfo.wind_dir] }}</span>
       </div>
       <div class="additional__pressure">
         <IconPressure width="24px" height="24px" />

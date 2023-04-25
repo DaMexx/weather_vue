@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-
-const props = defineProps({
+defineProps({
   width: {
     type: String,
     default: "50px",
@@ -19,8 +17,8 @@ const props = defineProps({
     version="1.1"
     viewBox="0 0 64 64"
     xml:space="preserve"
-    :width="props.width"
-    :height="props.height"
+    :width="width"
+    :height="height"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >

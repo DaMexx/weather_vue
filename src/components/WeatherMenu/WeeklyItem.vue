@@ -5,7 +5,7 @@ import { useTranslateWeatherTypes } from "@/helpers/helperTranslateWeatherTypes"
 import { formatDate } from "@/helpers/helperFormatDate";
 import {weatherTypesDictionary} from "@/helpers/dictionary"
 
-const props = defineProps({
+defineProps({
   item: {
     type: Object,
     default: {},
@@ -17,19 +17,19 @@ const props = defineProps({
 <template>
   <Transition name="fade">
     <div class="item">
-      <div class="item__date">{{ formatDate(props.item.date) }}</div>
-      <IconCloud width="100%" height="auto" />
+      <div class="item__date">{{ formatDate(item.date) }}</div>
+      <IconCloud width="100%"/>
       <!-- <div class="item__icon">s</div> -->
       <div class="item__max-temp">
-        <span v-if="props.item.parts.day.temp_avg > 0">+</span
-        >{{ props.item.parts.day.temp_avg }}
+        <span v-if="item.parts.day.temp_avg > 0">+</span
+        >{{ item.parts.day.temp_avg }}
       </div>
       <div class="item__min-temp">
-        <span v-if="props.item.parts.night.temp_avg > 0">+</span
-        >{{ props.item.parts.night.temp_avg }}
+        <span v-if="item.parts.night.temp_avg > 0">+</span
+        >{{ item.parts.night.temp_avg }}
       </div>
       <div class="item__type">
-        {{ weatherTypesDictionary[props.item.parts.day.condition] }}
+        {{ weatherTypesDictionary[item.parts.day.condition] }}
       </div>
     </div>
   </Transition>
@@ -37,6 +37,7 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .item {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   width: 20%;

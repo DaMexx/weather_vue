@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import Weekly from "./Weekly.vue";
+import { useWeatherStore } from "@/stores/weather";
+import { storeToRefs } from "pinia";
+const weatherStore = useWeatherStore();
+const { weatherData } = storeToRefs(weatherStore);
+
 </script>
 
 <template>
   <div class="main">
     <h1>WeatherMenu</h1>
-    <Weekly />
+    <Weekly 
+      :weatherData="weatherData"
+    />
   </div>
 </template>
 

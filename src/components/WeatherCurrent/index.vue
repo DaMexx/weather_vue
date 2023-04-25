@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import WeatherCurrentCard from './WeatherCurrentCard.vue';
-import WeatherCurrentSearchInput from './WeatherCurrentSearchInput.vue';
-</script>
+import WeatherCurrentCard from "./WeatherCurrentCard.vue";
+import WeatherCurrentSearchInput from "./WeatherCurrentSearchInput.vue";
+import { useWeatherStore } from "@/stores/weather";
+import { storeToRefs } from "pinia";
 
+const weatherStore = useWeatherStore();
+const { weatherData } = storeToRefs(weatherStore);
+</script>
 
 <template>
   <div class="main">
     <h1>WeatherCurrent</h1>
     <WeatherCurrentSearchInput />
-    <WeatherCurrentCard />
+    <WeatherCurrentCard :weatherData="weatherData" />
   </div>
 </template>
 

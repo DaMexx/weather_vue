@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { final } from "@/test";
 import WeeklyItem from "./WeeklyItem.vue";
-
-const weeklyData = final.data.forecasts;
+defineProps({
+  weatherData: {
+    type: Object,
+    required: true,
+  },
+});
 </script>
 
 <template>
   <div class="container">
-    <transition-group name="fade">
-      <WeeklyItem v-for="item in weeklyData" :item="item" :key="item" />
-    </transition-group>
+    <WeeklyItem
+      v-for="item in weatherData.forecasts"
+      :item="item"
+      :key="item"
+    />
   </div>
 </template>
 

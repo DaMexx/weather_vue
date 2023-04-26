@@ -15,7 +15,6 @@ defineProps({
 </script>
 
 <template>
-  <Transition name="fade">
     <div class="item">
       <div class="item__date">{{ formatDate(item.date) }}</div>
       <IconCloud width="100%"/>
@@ -32,7 +31,6 @@ defineProps({
         {{ weatherTypesDictionary[item.parts.day.condition] }}
       </div>
     </div>
-  </Transition>
 </template>
 
 <style scoped lang="scss">
@@ -44,5 +42,10 @@ defineProps({
   background-color: cornflowerblue;
   border-radius: 20px;
   padding: 20px;
+  overflow: hidden;
+  &__type{
+    font-size: 0.56em;
+    overflow-wrap: break-word;
+  }
 }
 </style>

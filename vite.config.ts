@@ -17,7 +17,7 @@ export default defineConfig({
       '/api': {
         target: 'https://api.weather.yandex.ru', // целевой URL
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '/v2/forecast/'), // изменяем путь запроса
+        rewrite: path => path.replace(/^\/api/, '/v2/'), // изменяем путь запроса
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           'Referer': 'http://localhost:9010'

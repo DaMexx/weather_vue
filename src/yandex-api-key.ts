@@ -1,0 +1,1 @@
+export const yandexApiKey: string = "79c765c9-5117-4351-89f6-f1717dd2cb76";

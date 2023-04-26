@@ -2,9 +2,7 @@
 import WeatherCurrent from "@/components/WeatherCurrent/index.vue";
 import WeatherMenu from "@/components/WeatherMenu/index.vue";
 import { useWeatherStore } from "@/stores/weather";
-
 import { onMounted } from "vue";
-import { storeToRefs } from "pinia";
 const weatherStore = useWeatherStore();
 const { weatherRequestAction } = weatherStore;
 

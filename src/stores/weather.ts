@@ -5,7 +5,9 @@ import axios from "axios";
 
 export const useWeatherStore = defineStore("weather", () => {
   const weatherData = ref<any>({});
+  const loading = ref<boolean>(false);
   const fetchWeatherData = async (lat: number, lon: number) => {
+    loading.value = true;
     const headers = {
       "X-Yandex-API-Key": `${yandexApiKey}`,
       "X-Requested-With": "XMLHttpRequest",
@@ -21,11 +23,13 @@ export const useWeatherStore = defineStore("weather", () => {
       });
       const data = response.data;
       weatherData.value = data;
+      loading.value = false;
     } catch (error) {
       console.error(error);
     }
   };
   return {
+    loading,
     weatherData,
     weatherRequestAction: fetchWeatherData,
   };

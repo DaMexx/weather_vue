@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
-const props = defineProps({
+defineProps({
   width: {
-    type:String,
-    default: '50px'
+    type: String,
+    default: "50px",
   },
   height: {
-    type:String,
-    default: '50px'
+    type: String,
+    default: "50px",
   },
 });
 </script>
@@ -21,8 +21,8 @@ const props = defineProps({
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    :width="props.width"
-    :height="props.height"
+    :width="width"
+    :height="height"
     viewBox="0 0 516.4 516.4"
     style="enable-background: new 0 0 516.4 516.4"
     xml:space="preserve"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 
-const props = defineProps({
+defineProps({
   width: {
     type: String,
     default: "50px",
@@ -21,8 +21,8 @@ const props = defineProps({
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    :width="props.width"
-    :height="props.height"
+    :width="width"
+    :height="height"
     viewBox="0 0 792 792"
     style="enable-background: new 0 0 792 792"
     xml:space="preserve"

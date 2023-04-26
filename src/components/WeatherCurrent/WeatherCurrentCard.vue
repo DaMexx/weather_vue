@@ -4,7 +4,7 @@ import IconWaterDrop from "@/components/icons/IconWaterDrop.vue";
 import IconWind from "@/components/icons/IconWind.vue";
 import IconCloud from "@/components/icons/IconCloud.vue";
 import IconPressure from "@/components/icons/IconPressure.vue";
-import SmartekaIcon from "@/components/common/SmartekaIcon.vue"
+import ClouIcon from '@/assets/svg/cloud.svg'
 import {
   weatherTypesDictionary,
   windDirectionDictionary,
@@ -57,7 +57,7 @@ defineProps({
         <div>{{ weatherData?.fact?.humidity }}%</div>
       </div>
     </div>
-    <SmartekaIcon name="cloud"/>
+    <!-- <SmartekaIcon name="cloud"/> -->
   </div>
   <span></span>
 </template>

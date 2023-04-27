@@ -1,24 +1,33 @@
 <script setup lang="ts">
+/**
+ * Components
+ */
 import WLoader from "../common/WLoader.vue";
 import WeatherCurrentCard from "./WeatherCurrentCard.vue";
 import WeatherCurrentSearchInput from "./WeatherCurrentSearchInput.vue";
+/**
+ * Store
+ */
 import { useWeatherStore } from "@/stores/weather";
 import { storeToRefs } from "pinia";
 
 const weatherStore = useWeatherStore();
-const { weatherData, loading } = storeToRefs(weatherStore);
+const { weatherData, weatherDataGeoObject, loading } =
+  storeToRefs(weatherStore);
 </script>
 
 <template>
   <div class="main">
     <h1>WeatherCurrent</h1>
     <WeatherCurrentSearchInput />
-
     <div v-if="loading" style="display: flex; justify-content: center">
       <WLoader />
     </div>
-
-    <WeatherCurrentCard v-else :weatherData="weatherData" />
+    <WeatherCurrentCard
+      v-else
+      :weatherData="weatherData"
+      :weatherDataGeoObject="weatherDataGeoObject"
+    />
   </div>
 </template>
 

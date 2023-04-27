@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import WeatherCurrent from "@/components/WeatherCurrent/index.vue";
 import WeatherMenu from "@/components/WeatherMenu/index.vue";
+import { onBeforeMount } from "vue";
 import { useWeatherStore } from "@/stores/weather";
-import { onMounted } from "vue";
-const weatherStore = useWeatherStore();
-const { weatherRequestAction } = weatherStore;
 
-onMounted(() => {
-  // weatherRequestAction(55.75396, 37.620393);
-  weatherRequestAction(47.200605, 38.927657);
+const weatherStore = useWeatherStore();
+const { fetchWeatherData } = weatherStore;
+
+onBeforeMount(() => {
+  // fetchWeatherData(55.75396, 37.620393);
+  fetchWeatherData(47.200605, 38.927657);
 });
 </script>
 

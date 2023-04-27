@@ -1,63 +1,71 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+/**
+ * Components
+ */
 import IconWaterDrop from "@/components/icons/IconWaterDrop.vue";
 import IconWind from "@/components/icons/IconWind.vue";
 import IconCloud from "@/components/icons/IconCloud.vue";
 import IconPressure from "@/components/icons/IconPressure.vue";
-import ClouIcon from '@/assets/svg/cloud.svg'
+/**
+ * Types
+ */
+import type { TData,TGeoObject } from "@/types";
+/**
+ * Helper functions
+ */
 import {
   weatherTypesDictionary,
   windDirectionDictionary,
 } from "@/helpers/dictionary";
 
-defineProps({
-  weatherData: {
-    type: Object,
-    required: true,
-  },
-});
-
+interface IProps {
+  weatherData: TData;
+  weatherDataGeoObject: TGeoObject
+}
+const props = defineProps<IProps>();
 </script>
 
 <template>
   <div class="weather-card">
     <h1 class="weather-card__title">
-      {{ weatherData.geo_object?.district?.name }},
-      {{ weatherData.geo_object?.locality?.name }}
+      {{ props.weatherDataGeoObject.district.name }},
+      {{ props.weatherDataGeoObject.locality.name }}
     </h1>
     <div class="weather-card__temperature">
       <div class="temperature__main">
-        <span v-if="weatherData?.fact?.temp > 0">+</span>
-        <span class="temp">{{ weatherData?.fact?.temp }}</span>
+        <span v-if="props.weatherData.fact.temp > 0">+</span>
+        <span class="temp">{{ props.weatherData.fact.temp }}</span>
       </div>
       <IconCloud class="temperature__icon" />
 
       <div class="temperature__container">
         <div class="container__condition">
-          {{ weatherTypesDictionary[weatherData?.fact?.condition] }}
+          {{ weatherTypesDictionary[props.weatherData.fact.condition] }}
         </div>
         <div class="container__feel">
-          Ощущается как <span v-if="weatherData?.fact?.feels_like > 0">+</span
-          ><span class="temp">{{ weatherData?.fact?.feels_like }}</span>
+          Ощущается как
+          <span v-if="props.weatherData.fact.feels_like > 0">+</span
+          ><span class="temp">{{ props.weatherData.fact.feels_like }}</span>
         </div>
       </div>
     </div>
     <div class="weather-card__additional">
       <div class="additional__wind">
         <IconWind width="24px" height="24px" />
-        <span>{{ weatherData?.fact?.wind_speed }} м/с</span>
-        <span>{{ windDirectionDictionary[weatherData?.fact?.wind_dir] }}</span>
+        <span>{{ props.weatherData.fact.wind_speed }} м/с</span>
+        <span>{{
+          windDirectionDictionary[props.weatherData.fact.wind_dir]
+        }}</span>
       </div>
       <div class="additional__pressure">
         <IconPressure width="24px" height="24px" />
-        <span>{{ weatherData?.fact?.pressure_mm }} мм рт.ст.</span>
+        <span>{{ props.weatherData.fact.pressure_mm }} мм рт.ст.</span>
       </div>
       <div class="additional__humidity">
         <IconWaterDrop width="24px" height="24px" />
-        <div>{{ weatherData?.fact?.humidity }}%</div>
+        <div>{{ props.weatherData.fact.humidity }}%</div>
       </div>
     </div>
-    <!-- <SmartekaIcon name="cloud"/> -->
   </div>
   <span></span>
 </template>
@@ -67,7 +75,7 @@ defineProps({
   width: 100%;
   min-width: max-content;
   height: max-content;
-  background: url('@/assets/images/rain.png');
+  background: url("@/assets/images/rain.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;

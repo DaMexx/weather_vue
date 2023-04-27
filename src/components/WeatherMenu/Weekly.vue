@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import WeeklyItem from "./WeeklyItem.vue";
-defineProps({
-  weatherData: {
-    type: Object,
-    required: true,
-  },
-});
+import type { TForecast } from "@/types";
+
+interface IProps {
+  forecasts: TForecast[];
+}
+const props = defineProps<IProps>();
 </script>
 
 <template>
   <div class="container">
-    <WeeklyItem
-      v-for="item in weatherData.forecasts"
-      :item="item"
-      :key="item"
-    />
+    <WeeklyItem v-for="item in props.forecasts" :item="item" :key="item.date" />
   </div>
 </template>
 

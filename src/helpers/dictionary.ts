@@ -1,4 +1,4 @@
-import type { IDictionary } from "@/types/types";
+import type { IDictionary } from "@/types";
 
 export const weatherTypesDictionary: IDictionary = {
   clear: "ясно",

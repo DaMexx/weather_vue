@@ -1,36 +1,32 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import IconCloud from "../icons/IconCloud.vue";
-import { useTranslateWeatherTypes } from "@/helpers/helperTranslateWeatherTypes";
 import { formatDate } from "@/helpers/helperFormatDate";
-import {weatherTypesDictionary} from "@/helpers/dictionary"
+import { weatherTypesDictionary } from "@/helpers/dictionary";
+import type { TForecast } from "@/types";
 
-defineProps({
-  item: {
-    type: Object,
-    default: {},
-  },
-});
-
+interface IPorps {
+  item: TForecast;
+}
+const props = defineProps<IPorps>();
 </script>
 
 <template>
-    <div class="item">
-      <div class="item__date">{{ formatDate(item.date) }}</div>
-      <IconCloud width="100%"/>
-      <!-- <div class="item__icon">s</div> -->
-      <div class="item__max-temp">
-        <span v-if="item.parts.day.temp_avg > 0">+</span
-        >{{ item.parts.day.temp_avg }}
-      </div>
-      <div class="item__min-temp">
-        <span v-if="item.parts.night.temp_avg > 0">+</span
-        >{{ item.parts.night.temp_avg }}
-      </div>
-      <div class="item__type">
-        {{ weatherTypesDictionary[item.parts.day.condition] }}
-      </div>
+  <div class="item">
+    <div class="item__date">{{ formatDate(props.item.date) }}</div>
+    <IconCloud width="100%" />
+
+    <div class="item__max-temp">
+      <span v-if="props.item.parts.day_short.temp > 0">+</span
+      >{{ props.item.parts.day_short.temp }}
     </div>
+    <div class="item__min-temp">
+      <span v-if="props.item.parts.day_short.temp_min > 0">+</span
+      >{{ props.item.parts.day_short.temp_min }}
+    </div>
+    <div class="item__type">
+      {{ weatherTypesDictionary[props.item.parts.day_short.condition] }}
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -43,7 +39,7 @@ defineProps({
   border-radius: 20px;
   padding: 20px;
   overflow: hidden;
-  &__type{
+  &__type {
     font-size: 0.56em;
     overflow-wrap: break-word;
   }

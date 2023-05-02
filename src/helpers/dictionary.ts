@@ -2,7 +2,7 @@ import type { IDictionary } from "@/types";
 
 export const weatherTypesDictionary: IDictionary = {
   clear: "ясно",
-  partlyCloudy: "малооблачно",
+  "partly-cloudy": "малооблачно",
   cloudy: "облачно с прояснениями",
   overcast: "пасмурно",
   drizzle: "морось",

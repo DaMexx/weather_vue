@@ -4,10 +4,12 @@
  */
 import Weekly from "./Weekly.vue";
 import WLoader from "../common/WLoader.vue";
+import WeeklyItem from "./WeeklyItem.vue";
 /**
- * Store  
+ * Store
  */
 import { useWeatherStore } from "@/stores/weather";
+/* spell-checker: disable */
 import { storeToRefs } from "pinia";
 
 const weatherStore = useWeatherStore();
@@ -17,10 +19,25 @@ const { weatherDataForecast, loading } = storeToRefs(weatherStore);
 <template>
   <div class="main">
     <h1>WeatherMenu</h1>
-    <div v-if="loading" style="display: flex; justify-content: center">
-      <WLoader />
+    <div
+      v-if="loading"
+      style="
+        display: flex; 
+        place-content: center; 
+        height: 100%
+      "
+    >
+      <WLoader :style="'top:35%'" />
     </div>
-    <Weekly v-else :forecasts="weatherDataForecast" />
+    <Weekly v-else>
+      <template #weather>
+        <WeeklyItem
+          v-for="item in weatherDataForecast"
+          :item="item"
+          :key="item.date"
+        />
+      </template>
+    </Weekly>
   </div>
 </template>
 

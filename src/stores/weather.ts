@@ -25,8 +25,8 @@ export const useWeatherStore = defineStore("weather", () => {
       "X-Requested-With": "XMLHttpRequest",
     };
     const params = {
-      lat: lat,
-      lon: lon,
+      lat,
+      lon
     };
     try {
       const response = await axios.get<TData>("/forecast", {

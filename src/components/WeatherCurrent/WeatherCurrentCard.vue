@@ -9,7 +9,7 @@ import IconPressure from "@/components/icons/IconPressure.vue";
 /**
  * Types
  */
-import type { TData,TGeoObject } from "@/types";
+import type { TData, TGeoObject } from "@/types";
 /**
  * Helper functions
  */
@@ -53,9 +53,11 @@ const props = defineProps<IProps>();
       <div class="additional__wind">
         <IconWind width="24px" height="24px" />
         <span>{{ props.weatherData.fact.wind_speed }} м/с</span>
-        <span>{{
-          windDirectionDictionary[props.weatherData.fact.wind_dir]
-        }}</span>
+        <span>
+          {{
+            windDirectionDictionary[props.weatherData.fact.wind_dir]
+          }}
+        </span>
       </div>
       <div class="additional__pressure">
         <IconPressure width="24px" height="24px" />
@@ -72,7 +74,7 @@ const props = defineProps<IProps>();
 
 <style scoped lang="scss">
 .weather-card {
-  width: 100%;
+  width: 35%;
   min-width: max-content;
   height: max-content;
   background: url("@/assets/images/rain.png");

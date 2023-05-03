@@ -2,6 +2,22 @@ export interface IDictionary {
   [key: string]: string;
 }
 
+type Enumerate<
+  N extends number,
+  Acc extends number[] = []
+> = Acc["length"] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc["length"]]>;
+
+type IntRange<F extends number, T extends number> = Exclude<
+  Enumerate<T>,
+  Enumerate<F>
+>;
+
+let a = -10;
+export type Latitude = IntRange<0, 90>;
+export type Longitude = IntRange<0, 180>;
+export type TLocation = { lat: number; lon: number };
 export type TInfo = {
   n: boolean;
   geoid: number;

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <slot name="weather"></slot>
+    <slot name="weather-item"></slot>
   </div>
 </template>
 

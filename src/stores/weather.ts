@@ -2,11 +2,17 @@ import { defineStore } from "pinia";
 import { yandexApiKey } from "@/yandex-api-key";
 import { ref, computed } from "vue";
 import axios from "axios";
-import type { TData, TFact, TInfo, TGeoObject, TForecast } from "@/types";
+import type {
+  TData,
+  TFact,
+  TInfo,
+  TGeoObject,
+  TForecast,
+  TLocation,
+} from "@/types";
 
 export const useWeatherStore = defineStore("weather", () => {
   const weather = ref<TData>({} as TData);
-
   const weatherData = computed<TData>(() => weather.value);
   const weatherDataFact = computed<TFact>(() => weather.value.fact);
   const weatherDataInfo = computed<TInfo>(() => weather.value.info);
@@ -18,15 +24,36 @@ export const useWeatherStore = defineStore("weather", () => {
   );
   const loading = ref<boolean>(false);
 
-  const fetchWeatherData = async (lat: number, lon: number): Promise<void> => {
+  const getLocation = async (): Promise<TLocation> => {
+    let location = {} as TLocation;
+    try {
+      location = await new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            resolve({ lat, lon });
+          });
+        } else {
+          reject("your browser doesn't support geolocation API");
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    return location;
+  };
+
+  const fetchWeatherData = async (): Promise<void> => {
     loading.value = true;
+    const { lat, lon } = await getLocation();
     const headers = {
       "X-Yandex-API-Key": `${yandexApiKey}`,
       "X-Requested-With": "XMLHttpRequest",
     };
     const params = {
       lat,
-      lon
+      lon,
     };
     try {
       const response = await axios.get<TData>("/forecast", {

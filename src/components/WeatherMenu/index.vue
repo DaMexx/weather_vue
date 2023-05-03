@@ -30,7 +30,7 @@ const { weatherDataForecast, loading } = storeToRefs(weatherStore);
       <WLoader :style="'top:35%'" />
     </div>
     <Weekly v-else>
-      <template #weather>
+      <template #weather-item>
         <WeeklyItem
           v-for="item in weatherDataForecast"
           :item="item"

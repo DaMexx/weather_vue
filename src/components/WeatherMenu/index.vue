@@ -21,11 +21,7 @@ const { weatherDataForecast, loading } = storeToRefs(weatherStore);
     <h1>WeatherMenu</h1>
     <div
       v-if="loading"
-      style="
-        display: flex; 
-        place-content: center; 
-        height: 100%
-      "
+      class="loader_wrapper"
     >
       <WLoader :style="'top:35%'" />
     </div>

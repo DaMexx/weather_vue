@@ -26,6 +26,11 @@ main {
 .fade-leave-active {
   opacity: 0;
 }
+.loader_wrapper {
+  display: flex;
+  place-content: center;
+  height: 100%;
+}
 svg {
   fill: white;
 }

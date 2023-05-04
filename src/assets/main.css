@@ -1,5 +1,11 @@
 /* @import "./base.css"; */
-@import "./reset.scss";
+/* @import tailwind*/
+@import "./reset.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -19,6 +25,11 @@ main {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+.loader_wrapper {
+  display: flex;
+  place-content: center;
+  height: 100%;
 }
 svg {
   fill: white;

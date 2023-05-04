@@ -18,7 +18,7 @@ const { weatherData, weatherDataGeoObject, loading } =
 
 <template>
   <div class="main">
-    <h1>WeatherCurrent</h1>
+    <h1 class="font-bold underline">WeatherCurrent</h1>
     <WeatherCurrentSearchInput />
     <div v-if="loading" style="display: flex; justify-content: center">
       <WLoader />
